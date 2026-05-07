@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Путь монаха — Настройки{% endblock %}
+{% block page_id %}settings{% endblock %}
+
+{% block content %}
+  <section class="page-header compact">
+    <div>
+      <p class="eyebrow">Настройки системы</p>
+      <h2>Правила прогресса и хранения</h2>
+      <p class="page-subtitle">Здесь можно подстроить путь уровней, опыт задач, начало недели и директорию JSON-файлов.</p>
+    </div>
+  </section>
+
+  <section class="panel form-panel wide">
+    <form id="settings-form" class="stack-form">
+      <div class="two-column-form">
+        <label>
+          <span>Тема</span>
+          <select id="settings-theme">
+            <option value="light" {% if settings.theme == 'light' %}selected{% endif %}>Светлая</option>
+            <option value="dark" {% if settings.theme == 'dark' %}selected{% endif %}>Тёмная</option>
+          </select>
+        </label>
+        <label>
+          <span>Начало недели</span>
+          <select id="settings-week-start">
+            <option value="monday" {% if settings.week_start == 'monday' %}selected{% endif %}>Понедельник</option>
+            <option value="sunday" {% if settings.week_start == 'sunday' %}selected{% endif %}>Воскресенье</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="two-column-form">
+        <label>
+          <span>Папка данных</span>
+          <input type="text" id="settings-data-directory" value="{{ settings.data_directory }}">
+        </label>
+        <label class="toggle-label">
+          <span>Автоперенос единичных задач</span>
+          <input type="checkbox" id="settings-carry-over" {% if settings.carry_over_one_time_tasks %}checked{% endif %}>
+        </label>
+      </div>
+
+      <div class="settings-block">
+        <div class="panel-head">
+          <h3>Базовый опыт по категориям</h3>
+        </div>
+        <div class="two-column-form">
+          <label>
+            <span>{{ category_labels['urgent_important'] }}</span>
+            <input type="number" id="xp-urgent-important" value="{{ settings.base_xp_by_category['urgent_important'] }}" min="0">
+          </label>
+          <label>
+            <span>{{ category_labels['urgent_not_important'] }}</span>
+            <input type="number" id="xp-urgent-not-important" value="{{ settings.base_xp_by_category['urgent_not_important'] }}" min="0">
+          </label>
+          <label>
+            <span>{{ category_labels['not_urgent_important'] }}</span>
+            <input type="number" id="xp-not-urgent-important" value="{{ settings.base_xp_by_category['not_urgent_important'] }}" min="0">
+          </label>
+          <label>
+            <span>{{ category_labels['not_urgent_not_important'] }}</span>
+            <input type="number" id="xp-not-urgent-not-important" value="{{ settings.base_xp_by_category['not_urgent_not_important'] }}" min="0">
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-block">
+        <div class="panel-head">
+          <h3>Уровни месяца</h3>
+          <button type="button" class="link-button" id="add-level-row">Добавить уровень</button>
+        </div>
+        <div id="level-rows" class="level-edit-list">
+          {% for level in settings.levels %}
+            <div class="level-edit-row">
+              <input type="text" class="level-title-input" value="{{ level.title }}" placeholder="Название уровня">
+              <input type="number" class="level-xp-input" value="{{ level.required_xp }}" min="0" placeholder="XP">
+              <button type="button" class="link-button danger remove-level-row">Удалить</button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button type="submit" class="primary-button">Сохранить настройки</button>
+    </form>
+  </section>
+{% endblock %}

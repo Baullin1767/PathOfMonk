@@ -1,0 +1,123 @@
+[
+  {
+    "id": "6ea32ece-69cb-4e42-9460-3af2c4967c7b",
+    "title": "Заполнить спринты",
+    "description": "Задача 112 заполнить таблицу спринтов",
+    "task_type": "one_time",
+    "date": "2026-05-07",
+    "repeat_days": [],
+    "duration_minutes": 120,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 32,
+    "created_at": "2026-05-07T16:34:09.396794",
+    "completed_at": "2026-05-07T18:40:22.855828",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-07",
+    "completion_dates": [
+      "2026-05-07"
+    ],
+    "scheduled_dates": [
+      "2026-05-07"
+    ]
+  },
+  {
+    "id": "fce47c57-2383-47cd-86f4-9499c61da976",
+    "title": "Записать завязку приключения",
+    "description": "Сделать аудио запись завязки тестового приключения",
+    "task_type": "one_time",
+    "date": "2026-05-07",
+    "repeat_days": [],
+    "duration_minutes": 30,
+    "status": "pending",
+    "category": "not_urgent_important",
+    "xp_reward": 18,
+    "created_at": "2026-05-07T18:41:28.506434",
+    "completed_at": null,
+    "timer_state": "idle",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 1800,
+    "last_moved_at": null,
+    "state_date": "2026-05-07",
+    "completion_dates": [],
+    "scheduled_dates": [
+      "2026-05-07"
+    ]
+  },
+  {
+    "id": "e8f8c7bd-75bf-4660-8427-9105fda32d52",
+    "title": "Разработать систему поиска работы",
+    "description": "1. Собрать все источники в одну базу данных и сделать фильтры.\n2. Занести рутинные задачи в путь монаха",
+    "task_type": "one_time",
+    "date": "2026-05-07",
+    "repeat_days": [],
+    "duration_minutes": 60,
+    "status": "pending",
+    "category": "urgent_important",
+    "xp_reward": 26,
+    "created_at": "2026-05-07T18:51:46.090572",
+    "completed_at": null,
+    "timer_state": "idle",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 3600,
+    "last_moved_at": null,
+    "state_date": "2026-05-07",
+    "completion_dates": [],
+    "scheduled_dates": [
+      "2026-05-07"
+    ]
+  },
+  {
+    "id": "547bbd33-a3a9-453a-944c-2504f7263433",
+    "title": "Перенести документы в таблицу",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-07",
+    "repeat_days": [],
+    "duration_minutes": 10,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 21,
+    "created_at": "2026-05-07T18:53:15.452226",
+    "completed_at": "2026-05-07T18:55:58.863608",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-07",
+    "completion_dates": [
+      "2026-05-07"
+    ],
+    "scheduled_dates": [
+      "2026-05-07"
+    ]
+  },
+  {
+    "id": "a21e6925-bbbd-4995-aac7-15b13550e727",
+    "title": "Сделать квестовую систему с помощью кодекс",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-07",
+    "repeat_days": [],
+    "duration_minutes": 60,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 26,
+    "created_at": "2026-05-07T18:55:09.777676",
+    "completed_at": "2026-05-07T18:56:09.505226",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-07",
+    "completion_dates": [
+      "2026-05-07"
+    ],
+    "scheduled_dates": [
+      "2026-05-07"
+    ]
+  }
+]

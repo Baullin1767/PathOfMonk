@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Путь монаха — День{% endblock %}
+{% block page_id %}dashboard{% endblock %}
+
+{% block content %}
+  <section class="page-header">
+    <div>
+      <p class="eyebrow">Сегодняшний ритм</p>
+      <h2>{{ current_date_label }}</h2>
+      <p class="page-subtitle">Фокус на главном, спокойный темп, ясный горизонт.</p>
+    </div>
+  </section>
+
+  <section class="summary-grid">
+    <article class="summary-card">
+      <span class="summary-label">Задач на сегодня</span>
+      <strong>{{ daily_summary.total_tasks }}</strong>
+      <small>{{ daily_summary.completed_tasks }} завершено</small>
+    </article>
+    <article class="summary-card">
+      <span class="summary-label">Минут в работе</span>
+      <strong>{{ daily_summary.completed_minutes }}/{{ daily_summary.total_minutes }}</strong>
+      <small>Выполненный объём дня</small>
+    </article>
+    <article class="summary-card">
+      <span class="summary-label">Опыт дня</span>
+      <strong>{{ daily_summary.earned_xp }} XP</strong>
+      <small>{{ daily_summary.completion_percent }}% выполнения</small>
+    </article>
+  </section>
+
+  <section class="progress-layout">
+    <article class="panel progress-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Недельная шкала опыта</p>
+          <h3>{{ weekly_progress.current_xp }} / {{ weekly_progress.max_xp }} XP</h3>
+        </div>
+        <span class="panel-note">{{ weekly_progress.week_label }}</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ weekly_progress.fill_percent }}%;"></div>
+      </div>
+      <div class="progress-meta">
+        <span>Запланировано: {{ weekly_progress.planned_tasks }}</span>
+        <span>Выполнено: {{ weekly_progress.completed_tasks }}</span>
+      </div>
+    </article>
+
+    <article class="panel monthly-panel">
+      <div class="journey-map">
+        <div class="journey-scroll">
+          <img class="journey-map-art" src="{{ url_for('static', filename='assets/journey-map-clean.png') }}" alt="">
+          <svg class="journey-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="{{ map_path_points }}" class="journey-route-line"></polyline>
+          </svg>
+          {% for point in map_points %}
+            <div class="journey-node {% if point.index == monthly_progress.current_level_index %}current{% elif point.index < monthly_progress.current_level_index %}done{% endif %}" style="left: {{ point.x }}%; top: {{ point.y }}%;" aria-hidden="true">
+              <span class="journey-dot"></span>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="journey-current-level">
+          <span class="journey-current-label">Текущий уровень</span>
+          <strong>{{ monthly_progress.current_level_index }}. {{ monthly_progress.current_level_title }}</strong>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="matrix-section">
+    <div class="matrix-header">
+      <div>
+        <p class="eyebrow">Матрица внимания</p>
+        <h3>Задачи дня по важности и срочности</h3>
+      </div>
+    </div>
+
+    <div class="matrix-grid">
+      {% for category in category_labels.keys() %}
+        <article class="panel quadrant quadrant-{{ loop.index }}">
+          <div class="panel-head">
+            <h4>{{ category_labels[category] }}</h4>
+            <span class="panel-note">{{ grouped_tasks[category]|length }} шт.</span>
+          </div>
+          <div class="task-stack">
+            {% if grouped_tasks[category] %}
+              {% for task in grouped_tasks[category] %}
+                <div class="task-card {% if task.status == 'completed' %}completed{% elif task.timer_state == 'running' %}running{% endif %}">
+                  <div class="task-topline">
+                    <strong>{{ task.title }}</strong>
+                    <span class="xp-badge">{{ task.xp_reward }} XP</span>
+                  </div>
+                  {% if task.description %}
+                    <p class="task-description">{{ task.description }}</p>
+                  {% endif %}
+                  <div class="task-meta">
+                    <span>{{ task.duration_minutes }} мин</span>
+                    <span class="status-chip status-{{ task.status }}">{{ task.status_label }}</span>
+                  </div>
+                  <div class="timer-box" data-timer-card data-running="{{ 'true' if task.timer_state == 'running' else 'false' }}" data-remaining-seconds="{{ task.timer_remaining_seconds }}">
+                    <span class="timer-label">Таймбокс</span>
+                    <strong class="timer-value">{{ task.timer_remaining_seconds }}</strong>
+                  </div>
+                  <div class="task-actions">
+                    <button class="task-action-button" data-action="start" data-task-id="{{ task.id }}">Начать</button>
+                    <button class="task-action-button secondary" data-action="pause" data-task-id="{{ task.id }}">Пауза</button>
+                    <button class="task-action-button success" data-action="finish" data-task-id="{{ task.id }}">Завершить</button>
+                    {% if task.can_carry_over %}
+                      <button class="task-action-button ghost" data-action="carry-over" data-task-id="{{ task.id }}">Перенести</button>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="empty-state">Здесь пока спокойно. Можно использовать квадрант для осознанной паузы.</div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

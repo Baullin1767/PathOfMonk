@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Путь монаха{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="theme-{{ theme }}" data-page="{% block page_id %}default{% endblock %}">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-card">
+        <div class="brand-copy">
+          <p class="eyebrow">Личный ритм</p>
+          <h1>Путь монаха</h1>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('index') }}" class="nav-link {% if request.path == '/' %}active{% endif %}">День</a>
+        <a href="{{ url_for('tasks_page') }}" class="nav-link {% if request.path == '/tasks' %}active{% endif %}">Задачи</a>
+        <a href="{{ url_for('weekly_stats_page') }}" class="nav-link {% if request.path == '/stats/weekly' %}active{% endif %}">Неделя</a>
+        <a href="{{ url_for('monthly_progress_page') }}" class="nav-link {% if request.path == '/progress/monthly' %}active{% endif %}">Месяц</a>
+        <a href="{{ url_for('yearly_stats_page') }}" class="nav-link {% if request.path == '/stats/yearly' %}active{% endif %}">Год</a>
+        <a href="{{ url_for('settings_page') }}" class="nav-link {% if request.path == '/settings' %}active{% endif %}">Настройки</a>
+      </nav>
+
+      <div class="sidebar-quote">
+        <p>{{ sidebar_quote }}</p>
+        <div class="sidebar-illustration" aria-hidden="true">
+          <img src="{{ url_for('static', filename='assets/sidebar-monk-scene.png') }}" alt="">
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

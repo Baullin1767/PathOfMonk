@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Путь монаха — Задачи{% endblock %}
+{% block page_id %}tasks{% endblock %}
+
+{% block content %}
+  <section class="page-header compact">
+    <div>
+      <p class="eyebrow">Управление задачами</p>
+      <h2>Создание и редактирование</h2>
+      <p class="page-subtitle">Рутинные задачи повторяются по дням недели, единичные живут на конкретной дате.</p>
+    </div>
+  </section>
+
+  <section class="editor-layout">
+    <article class="panel form-panel">
+      <div class="panel-head">
+        <h3 id="task-form-title">Новая задача</h3>
+        <button type="button" class="link-button" id="task-form-reset">Очистить форму</button>
+      </div>
+
+      <form id="task-form" class="stack-form">
+        <input type="hidden" id="task-id">
+        <label>
+          <span>Название</span>
+          <input type="text" id="task-title" required>
+        </label>
+        <label>
+          <span>Описание</span>
+          <textarea id="task-description" rows="4"></textarea>
+        </label>
+        <div class="two-column-form">
+          <label>
+            <span>Тип</span>
+            <select id="task-type">
+              <option value="one_time">Единичная</option>
+              <option value="routine">Рутинная</option>
+            </select>
+          </label>
+          <label>
+            <span>Длительность (мин)</span>
+            <input type="number" id="task-duration" min="5" step="5" value="25" required>
+          </label>
+        </div>
+
+        <label>
+          <span>Категория</span>
+          <select id="task-category">
+            {% for key, label in category_labels.items() %}
+              <option value="{{ key }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </label>
+
+        <div id="one-time-fields">
+          <label>
+            <span>Дата</span>
+            <input type="date" id="task-date" value="{{ today }}">
+          </label>
+        </div>
+
+        <div id="routine-fields" hidden>
+          <span class="field-group-label">Дни повторения</span>
+          <div class="weekday-grid">
+            {% for key, label in weekday_labels.items() %}
+              <label class="weekday-option">
+                <input type="checkbox" value="{{ key }}">
+                <span>{{ label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <button type="submit" class="primary-button">Сохранить задачу</button>
+      </form>
+    </article>
+
+    <article class="panel list-panel">
+      <div class="panel-head">
+        <h3>Все задачи</h3>
+        <span class="panel-note">{{ tasks|length }} записей</span>
+      </div>
+
+      <div class="task-listing">
+        {% for task in tasks %}
+          <div class="task-row">
+            <div>
+              <div class="task-topline">
+                <strong>{{ task.title }}</strong>
+                <span class="xp-badge">{{ task.xp_reward }} XP</span>
+              </div>
+              <p class="task-description">{{ task.description or 'Без описания' }}</p>
+              <div class="task-meta">
+                <span>{{ 'Рутинная' if task.task_type == 'routine' else 'Единичная' }}</span>
+                <span>{{ task.schedule_label }}</span>
+                <span>{{ task.duration_minutes }} мин</span>
+                <span>{{ task.category_label }}</span>
+              </div>
+            </div>
+            <div class="row-actions">
+              <button
+                type="button"
+                class="link-button task-edit-button"
+                data-task='{{ task|tojson|safe }}'
+              >Редактировать</button>
+              <button type="button" class="link-button danger task-delete-button" data-task-id="{{ task.id }}">Удалить</button>
+            </div>
+          </div>
+        {% else %}
+          <div class="empty-state">Список пока пуст. Добавьте первую задачу справа.</div>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+{% endblock %}

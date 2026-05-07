@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Путь монаха — Неделя{% endblock %}
+{% block page_id %}weekly-stats{% endblock %}
+
+{% block content %}
+  <section class="page-header compact">
+    <div>
+      <p class="eyebrow">Недельная динамика</p>
+      <h2>Опыт и ритм выполнения</h2>
+      <p class="page-subtitle">Текущая шкала и архив уже завершённых недель.</p>
+    </div>
+  </section>
+
+  <section class="summary-grid">
+    <article class="summary-card">
+      <span class="summary-label">Текущая неделя</span>
+      <strong>{{ weekly_progress.current_xp }} / {{ weekly_progress.max_xp }} XP</strong>
+      <small>{{ weekly_progress.week_label }}</small>
+    </article>
+    <article class="summary-card">
+      <span class="summary-label">Запланировано</span>
+      <strong>{{ weekly_progress.planned_tasks }}</strong>
+      <small>Задач на этой неделе</small>
+    </article>
+    <article class="summary-card">
+      <span class="summary-label">Выполнено</span>
+      <strong>{{ weekly_progress.completed_tasks }}</strong>
+      <small>{{ weekly_progress.fill_percent }}% шкалы заполнено</small>
+    </article>
+  </section>
+
+  <section class="panel table-panel">
+    <div class="panel-head">
+      <h3>Архив недель</h3>
+      <span class="panel-note">{{ weekly_entries|length }} записей</span>
+    </div>
+    <div class="stats-table">
+      <div class="stats-table-header">
+        <span>Неделя</span>
+        <span>План</span>
+        <span>Выполнено</span>
+        <span>XP</span>
+        <span>Лучшие категории</span>
+      </div>
+      {% for entry in weekly_entries|reverse %}
+        <div class="stats-table-row">
+          <span>{{ entry.week_start }} → {{ entry.week_end }}</span>
+          <span>{{ entry.planned_tasks }}</span>
+          <span>{{ entry.completed_tasks }} ({{ entry.completion_rate }}%)</span>
+          <span>{{ entry.xp_earned }}</span>
+          <span>
+            {% if entry.best_categories %}
+              {{ entry.best_categories | map(attribute='label') | join(', ') }}
+            {% else %}
+              Нет данных
+            {% endif %}
+          </span>
+        </div>
+      {% else %}
+        <div class="empty-state">Пока нет завершённых недель. Архив появится после первого недельного сброса.</div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

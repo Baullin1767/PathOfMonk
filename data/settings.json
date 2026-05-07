@@ -1,0 +1,54 @@
+{
+  "levels": [
+    {
+      "title": "Шут, заметивший путь",
+      "required_xp": 0
+    },
+    {
+      "title": "Любознательный странник",
+      "required_xp": 100
+    },
+    {
+      "title": "Ученик монастыря",
+      "required_xp": 250
+    },
+    {
+      "title": "Собранный послушник",
+      "required_xp": 450
+    },
+    {
+      "title": "Хранитель распорядка",
+      "required_xp": 700
+    },
+    {
+      "title": "Постигающий путь",
+      "required_xp": 1000
+    },
+    {
+      "title": "Мастер внутреннего порядка",
+      "required_xp": 1400
+    },
+    {
+      "title": "Наставник тишины",
+      "required_xp": 1900
+    },
+    {
+      "title": "Монах ясного разума",
+      "required_xp": 2500
+    },
+    {
+      "title": "Архимонах великой дисциплины",
+      "required_xp": 3200
+    }
+  ],
+  "base_xp_by_category": {
+    "urgent_important": 20,
+    "urgent_not_important": 10,
+    "not_urgent_important": 15,
+    "not_urgent_not_important": 5
+  },
+  "week_start": "monday",
+  "data_directory": "data",
+  "carry_over_one_time_tasks": true,
+  "theme": "light"
+}

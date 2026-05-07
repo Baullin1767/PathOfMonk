@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Путь монаха — Месяц{% endblock %}
+{% block page_id %}monthly-progress{% endblock %}
+
+{% block content %}
+  <section class="page-header compact">
+    <div>
+      <p class="eyebrow">Месячный путь</p>
+      <h2>{{ monthly_progress.current_level_title }}</h2>
+      <p class="page-subtitle">Месяц сбрасывается заново, но пройденные этапы сохраняются в годовую картину.</p>
+    </div>
+  </section>
+
+  <section class="progress-layout single-column">
+    <article class="panel monthly-panel large">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Текущий прогресс</p>
+          <h3>{{ monthly_progress.monthly_xp }} XP</h3>
+        </div>
+        <span class="medal-pill">{{ monthly_progress.medal_preview.icon }} {{ monthly_progress.medal_preview.label }}</span>
+      </div>
+
+      <div class="progress-bar tall">
+        <div class="progress-fill accent" style="width: {{ monthly_progress.fill_percent }}%;"></div>
+      </div>
+
+      <div class="path-caption wide">
+        <span>Текущий этап: {{ monthly_progress.current_level_title }}</span>
+        {% if monthly_progress.next_level_title %}
+          <span>Следующий: {{ monthly_progress.next_level_title }} при {{ monthly_progress.next_level_threshold }} XP</span>
+        {% else %}
+          <span>Вы достигли вершины месячной шкалы.</span>
+        {% endif %}
+      </div>
+
+      <ol class="level-road expanded">
+        {% for level in monthly_progress.levels %}
+          <li class="level-step {% if loop.index == monthly_progress.current_level_index %}current{% elif loop.index < monthly_progress.current_level_index %}done{% endif %}">
+            <span class="level-index">{{ loop.index }}</span>
+            <div>
+              <strong>{{ level.title }}</strong>
+              <small>{{ level.required_xp }} XP</small>
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </article>
+
+    <article class="panel table-panel">
+      <div class="panel-head">
+        <h3>Архив месяцев</h3>
+        <span class="panel-note">{{ monthly_entries|length }} записей</span>
+      </div>
+      <div class="stats-table">
+        <div class="stats-table-header">
+          <span>Месяц</span>
+          <span>XP</span>
+          <span>Уровень</span>
+          <span>Задачи</span>
+          <span>Медаль</span>
+        </div>
+        {% for entry in monthly_entries|reverse %}
+          <div class="stats-table-row">
+            <span>{{ entry.month_id }}</span>
+            <span>{{ entry.xp_earned }}</span>
+            <span>{{ entry.level_index }} — {{ entry.level_title }}</span>
+            <span>{{ entry.completed_tasks }}/{{ entry.planned_tasks }}</span>
+            <span>{{ entry.medal_icon }} {{ entry.medal_label }}</span>
+          </div>
+        {% else %}
+          <div class="empty-state">Архив месяцев заполнится после первого перехода в новый месяц.</div>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+{% endblock %}

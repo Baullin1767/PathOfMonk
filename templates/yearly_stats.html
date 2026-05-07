@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Путь монаха — Год{% endblock %}
+{% block page_id %}yearly-stats{% endblock %}
+
+{% block content %}
+  <section class="page-header compact">
+    <div>
+      <p class="eyebrow">Годовая перспектива</p>
+      <h2>Итоги по месяцам</h2>
+      <p class="page-subtitle">Здесь сохраняются месячные достижения, уровни и медали.</p>
+    </div>
+  </section>
+
+  <section class="year-grid">
+    {% for entry in yearly_entries|reverse %}
+      <article class="panel year-card">
+        <p class="eyebrow">{{ entry.label }}</p>
+        <h3>{{ entry.level_title }}</h3>
+        <div class="year-stat-line">
+          <span>Опыт</span>
+          <strong>{{ entry.xp_earned }} XP</strong>
+        </div>
+        <div class="year-stat-line">
+          <span>Уровень</span>
+          <strong>{{ entry.level_index }}</strong>
+        </div>
+        <div class="medal-pill">{{ entry.medal_icon }} {{ entry.medal_label }}</div>
+      </article>
+    {% else %}
+      <div class="empty-state">Годовая лента пока пуста. Месяцы появятся здесь автоматически.</div>
+    {% endfor %}
+  </section>
+{% endblock %}
