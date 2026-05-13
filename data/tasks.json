@@ -29,22 +29,28 @@
     "title": "Записать завязку приключения",
     "description": "Сделать аудио запись завязки тестового приключения",
     "task_type": "one_time",
-    "date": "2026-05-07",
+    "date": "2026-05-11",
     "repeat_days": [],
     "duration_minutes": 30,
-    "status": "pending",
+    "status": "completed",
     "category": "not_urgent_important",
     "xp_reward": 18,
     "created_at": "2026-05-07T18:41:28.506434",
-    "completed_at": null,
-    "timer_state": "idle",
+    "completed_at": "2026-05-11T13:05:52.800495",
+    "timer_state": "completed",
     "timer_started_at": null,
-    "timer_remaining_seconds": 1800,
-    "last_moved_at": null,
-    "state_date": "2026-05-07",
-    "completion_dates": [],
+    "timer_remaining_seconds": 0,
+    "last_moved_at": "2026-05-11T13:05:26.971524",
+    "state_date": "2026-05-11",
+    "completion_dates": [
+      "2026-05-11"
+    ],
     "scheduled_dates": [
-      "2026-05-07"
+      "2026-05-07",
+      "2026-05-08",
+      "2026-05-09",
+      "2026-05-10",
+      "2026-05-11"
     ]
   },
   {
@@ -52,22 +58,25 @@
     "title": "Разработать систему поиска работы",
     "description": "1. Собрать все источники в одну базу данных и сделать фильтры.\n2. Занести рутинные задачи в путь монаха",
     "task_type": "one_time",
-    "date": "2026-05-07",
+    "date": "2026-05-08",
     "repeat_days": [],
     "duration_minutes": 60,
-    "status": "pending",
+    "status": "completed",
     "category": "urgent_important",
     "xp_reward": 26,
     "created_at": "2026-05-07T18:51:46.090572",
-    "completed_at": null,
-    "timer_state": "idle",
+    "completed_at": "2026-05-08T12:01:35.789295",
+    "timer_state": "completed",
     "timer_started_at": null,
-    "timer_remaining_seconds": 3600,
-    "last_moved_at": null,
-    "state_date": "2026-05-07",
-    "completion_dates": [],
+    "timer_remaining_seconds": 0,
+    "last_moved_at": "2026-05-08T12:01:11.666600",
+    "state_date": "2026-05-08",
+    "completion_dates": [
+      "2026-05-08"
+    ],
     "scheduled_dates": [
-      "2026-05-07"
+      "2026-05-07",
+      "2026-05-08"
     ]
   },
   {
@@ -118,6 +127,208 @@
     ],
     "scheduled_dates": [
       "2026-05-07"
+    ]
+  },
+  {
+    "id": "34e6725c-896a-4ba4-b5ea-e96ee4ca7f24",
+    "title": "Поиск работы",
+    "description": "Чек таблицы с источниками и отклики по списку",
+    "task_type": "routine",
+    "date": null,
+    "repeat_days": [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday"
+    ],
+    "duration_minutes": 60,
+    "status": "pending",
+    "category": "urgent_important",
+    "xp_reward": 26,
+    "created_at": "2026-05-08T12:12:59.591647",
+    "completed_at": null,
+    "timer_state": "idle",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 3600,
+    "last_moved_at": null,
+    "state_date": "2026-05-13",
+    "completion_dates": [],
+    "scheduled_dates": []
+  },
+  {
+    "id": "e54df2f9-0ef9-451e-b98e-b9bd596f2a8b",
+    "title": "Разобрать исследование по зп, с корректировать резюме",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-11",
+    "repeat_days": [],
+    "duration_minutes": 25,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 22,
+    "created_at": "2026-05-11T13:41:11.762075",
+    "completed_at": "2026-05-11T13:46:37.219899",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-11",
+    "completion_dates": [
+      "2026-05-11"
+    ],
+    "scheduled_dates": [
+      "2026-05-11"
+    ]
+  },
+  {
+    "id": "4cc1ad31-33c7-4c21-ae07-3410a5eef353",
+    "title": "Дооформить резюме на анлийском",
+    "description": "Дописать опыт сделать двух страничным",
+    "task_type": "one_time",
+    "date": "2026-05-12",
+    "repeat_days": [],
+    "duration_minutes": 30,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 23,
+    "created_at": "2026-05-11T13:59:12.436786",
+    "completed_at": "2026-05-12T13:01:54.223515",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": "2026-05-12T13:01:54.216492",
+    "state_date": "2026-05-12",
+    "completion_dates": [
+      "2026-05-12"
+    ],
+    "scheduled_dates": [
+      "2026-05-11",
+      "2026-05-12"
+    ]
+  },
+  {
+    "id": "b1a87273-9e9f-4005-a887-865ae82e9dd0",
+    "title": "Разобрать телеграм чаты на фриланс и поиск работы",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-12",
+    "repeat_days": [],
+    "duration_minutes": 25,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 22,
+    "created_at": "2026-05-12T14:33:04.919687",
+    "completed_at": "2026-05-12T19:20:15.525243",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-12",
+    "completion_dates": [
+      "2026-05-12"
+    ],
+    "scheduled_dates": [
+      "2026-05-12"
+    ]
+  },
+  {
+    "id": "a2dc627e-b5a2-466d-a2a7-9074ac8cfd15",
+    "title": "Заполнить спринты",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-13",
+    "repeat_days": [],
+    "duration_minutes": 60,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 26,
+    "created_at": "2026-05-13T14:26:31.884072",
+    "completed_at": "2026-05-13T16:01:50.518568",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-13",
+    "completion_dates": [
+      "2026-05-13"
+    ],
+    "scheduled_dates": [
+      "2026-05-13"
+    ]
+  },
+  {
+    "id": "0822b22b-e87f-4a5b-9b37-8d5611ead49c",
+    "title": "Скорректировать Linked in относительно резюме",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-13",
+    "repeat_days": [],
+    "duration_minutes": 25,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 22,
+    "created_at": "2026-05-13T14:27:00.682069",
+    "completed_at": "2026-05-13T18:17:16.631155",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-13",
+    "completion_dates": [
+      "2026-05-13"
+    ],
+    "scheduled_dates": [
+      "2026-05-13"
+    ]
+  },
+  {
+    "id": "aa31c327-e75d-41ec-94d2-382b163e3014",
+    "title": "Проверить спринты",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-13",
+    "repeat_days": [],
+    "duration_minutes": 20,
+    "status": "completed",
+    "category": "urgent_important",
+    "xp_reward": 22,
+    "created_at": "2026-05-13T16:02:14.336655",
+    "completed_at": "2026-05-13T17:55:56.924906",
+    "timer_state": "completed",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 0,
+    "last_moved_at": null,
+    "state_date": "2026-05-13",
+    "completion_dates": [
+      "2026-05-13"
+    ],
+    "scheduled_dates": [
+      "2026-05-13"
+    ]
+  },
+  {
+    "id": "7a23ffd8-fa8d-4cf6-b36e-65d22a3a717f",
+    "title": "Собрать прототип рекламки",
+    "description": "",
+    "task_type": "one_time",
+    "date": "2026-05-14",
+    "repeat_days": [],
+    "duration_minutes": 30,
+    "status": "pending",
+    "category": "urgent_important",
+    "xp_reward": 23,
+    "created_at": "2026-05-13T16:29:18.256211",
+    "completed_at": null,
+    "timer_state": "idle",
+    "timer_started_at": null,
+    "timer_remaining_seconds": 1800,
+    "last_moved_at": "2026-05-13T18:13:37.841477",
+    "state_date": "2026-05-14",
+    "completion_dates": [],
+    "scheduled_dates": [
+      "2026-05-13",
+      "2026-05-14"
     ]
   }
 ]

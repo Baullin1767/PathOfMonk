@@ -3,6 +3,34 @@
 {% block title %}Путь монаха — День{% endblock %}
 {% block page_id %}dashboard{% endblock %}
 
+{% macro render_task_card(task, force_completed=false) %}
+  <div class="task-card {% if force_completed or task.status == 'completed' %}completed{% elif task.timer_state == 'running' %}running{% endif %}">
+    <div class="task-topline">
+      <strong>{{ task.title }}</strong>
+      <span class="xp-badge">{{ task.xp_reward }} XP</span>
+    </div>
+    {% if task.description %}
+      <p class="task-description">{{ task.description }}</p>
+    {% endif %}
+    <div class="task-meta">
+      <span>{{ task.duration_minutes }} мин</span>
+      <span class="status-chip status-{{ task.status }}">{{ task.status_label }}</span>
+    </div>
+    <div class="timer-box" data-timer-card data-running="{{ 'true' if task.timer_state == 'running' and not force_completed else 'false' }}" data-remaining-seconds="{{ 0 if force_completed else task.timer_remaining_seconds }}">
+      <span class="timer-label">Таймбокс</span>
+      <strong class="timer-value">{{ 0 if force_completed else task.timer_remaining_seconds }}</strong>
+    </div>
+    <div class="task-actions">
+      <button class="task-action-button" data-action="start" data-task-id="{{ task.id }}">Начать</button>
+      <button class="task-action-button secondary" data-action="pause" data-task-id="{{ task.id }}">Пауза</button>
+      <button class="task-action-button success" data-action="finish" data-task-id="{{ task.id }}">Завершить</button>
+      {% if task.can_carry_over %}
+        <button class="task-action-button ghost" data-action="carry-over" data-task-id="{{ task.id }}">Перенести</button>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}
+
 {% block content %}
   <section class="page-header">
     <div>
@@ -79,40 +107,31 @@
 
     <div class="matrix-grid">
       {% for category in category_labels.keys() %}
+        {% set category_tasks = grouped_tasks[category] %}
         <article class="panel quadrant quadrant-{{ loop.index }}">
           <div class="panel-head">
             <h4>{{ category_labels[category] }}</h4>
-            <span class="panel-note">{{ grouped_tasks[category]|length }} шт.</span>
+            <span class="panel-note">{{ category_tasks.total }} шт.</span>
           </div>
           <div class="task-stack">
-            {% if grouped_tasks[category] %}
-              {% for task in grouped_tasks[category] %}
-                <div class="task-card {% if task.status == 'completed' %}completed{% elif task.timer_state == 'running' %}running{% endif %}">
-                  <div class="task-topline">
-                    <strong>{{ task.title }}</strong>
-                    <span class="xp-badge">{{ task.xp_reward }} XP</span>
-                  </div>
-                  {% if task.description %}
-                    <p class="task-description">{{ task.description }}</p>
-                  {% endif %}
-                  <div class="task-meta">
-                    <span>{{ task.duration_minutes }} мин</span>
-                    <span class="status-chip status-{{ task.status }}">{{ task.status_label }}</span>
-                  </div>
-                  <div class="timer-box" data-timer-card data-running="{{ 'true' if task.timer_state == 'running' else 'false' }}" data-remaining-seconds="{{ task.timer_remaining_seconds }}">
-                    <span class="timer-label">Таймбокс</span>
-                    <strong class="timer-value">{{ task.timer_remaining_seconds }}</strong>
-                  </div>
-                  <div class="task-actions">
-                    <button class="task-action-button" data-action="start" data-task-id="{{ task.id }}">Начать</button>
-                    <button class="task-action-button secondary" data-action="pause" data-task-id="{{ task.id }}">Пауза</button>
-                    <button class="task-action-button success" data-action="finish" data-task-id="{{ task.id }}">Завершить</button>
-                    {% if task.can_carry_over %}
-                      <button class="task-action-button ghost" data-action="carry-over" data-task-id="{{ task.id }}">Перенести</button>
-                    {% endif %}
-                  </div>
-                </div>
+            {% if category_tasks.total %}
+              {% for task in category_tasks.active %}
+                {{ render_task_card(task) }}
               {% endfor %}
+
+              {% if category_tasks.completed %}
+                <details class="completed-group">
+                  <summary class="completed-group-summary">
+                    <span>Выполненные</span>
+                    <span class="panel-note">{{ category_tasks.completed|length }} шт.</span>
+                  </summary>
+                  <div class="completed-task-stack">
+                    {% for task in category_tasks.completed %}
+                      {{ render_task_card(task, true) }}
+                    {% endfor %}
+                  </div>
+                </details>
+              {% endif %}
             {% else %}
               <div class="empty-state">Здесь пока спокойно. Можно использовать квадрант для осознанной паузы.</div>
             {% endif %}

@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "week_id": "2026-W19",
+    "week_start": "2026-05-04",
+    "week_end": "2026-05-10",
+    "planned_tasks": 12,
+    "completed_tasks": 4,
+    "xp_earned": 105,
+    "completion_rate": 33.33,
+    "best_categories": [
+      {
+        "category": "urgent_important",
+        "label": "Срочные и важные",
+        "planned": 10,
+        "completed": 4,
+        "completion_rate": 40.0
+      }
+    ]
+  }
+]

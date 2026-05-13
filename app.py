@@ -243,11 +243,17 @@ def create_app() -> Flask:
 
 
 def build_dashboard_context(progress_service: ProgressService, today_tasks: list[dict[str, Any]], today) -> Dict[str, Any]:
-    grouped_tasks: Dict[str, list[dict[str, Any]]] = {
-        category: [] for category in ProgressService.CATEGORY_ORDER
+    grouped_tasks: Dict[str, Dict[str, Any]] = {
+        category: {"active": [], "completed": [], "total": 0}
+        for category in ProgressService.CATEGORY_ORDER
     }
     for task in today_tasks:
-        grouped_tasks[task["category"]].append(task)
+        bucket = grouped_tasks[task["category"]]
+        if task["status"] == "completed":
+            bucket["completed"].append(task)
+        else:
+            bucket["active"].append(task)
+        bucket["total"] += 1
 
     monthly_progress = progress_service.get_monthly_progress(today)
     current_level_index = monthly_progress["current_level_index"]

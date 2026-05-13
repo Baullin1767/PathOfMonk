@@ -451,6 +451,49 @@ textarea {
   gap: 14px;
 }
 
+.completed-group,
+.completed-task-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.completed-group {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.completed-group-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(88, 117, 95, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+}
+
+.completed-group-summary::-webkit-details-marker {
+  display: none;
+}
+
+.completed-group-summary::after {
+  content: "▾";
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.completed-group[open] .completed-group-summary::after {
+  transform: rotate(180deg);
+}
+
+.completed-task-stack {
+  margin-top: 12px;
+}
+
 .task-card,
 .task-row {
   padding: 18px;
